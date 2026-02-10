@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     environment {
-        DOCKER = "/usr/local/bin/docker"
+        PATH = "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+        DOCKER = "docker"
     }
 
     stages {
