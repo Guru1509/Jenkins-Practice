@@ -1,22 +1,26 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKER = "/usr/local/bin/docker"
+    }
+
     stages {
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t python-app .'
+                sh '$DOCKER build -t python-app .'
             }
         }
 
         stage('Run Tests Inside Docker') {
             steps {
-                sh 'docker run --rm python-app pytest'
+                sh '$DOCKER run --rm python-app pytest'
             }
         }
 
         stage('Run Application') {
             steps {
-                sh 'docker run --rm python-app'
+                sh '$DOCKER run --rm python-app'
             }
         }
     }
